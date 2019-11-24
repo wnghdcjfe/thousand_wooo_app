@@ -34,8 +34,15 @@
 </p> 
 
 ### 클라이언트 스펙
- - React, Redux, Redux-saga, immer, redux-saga, styled-components
+ - `React`
+ - `Redux`
+ - `Redux-saga`
+ - `immer`
+ - `redux-saga`
+ - `styled-components`
 
 ### 백엔드 스펙
- - Node.js, Express.js, MongoDB & MySQL 
+ - `Node.js`
+ - `Express.js`
+ - `MongoDB` 
 
