@@ -44,21 +44,21 @@ const textMap = {
     login : "로그인", 
     register : "회원가입"
 }
-const AuthForm = ({type}) =>{
+const AuthForm = ({type, form, onChange, onSubmit}) =>{ 
     const text = textMap[type]
     return (
         <AuthFormWrapper>
             <h3>{text}</h3>
-            <form action="">
-                <StyledInput autoComplete="username" name = "username" placeholder="아이디"></StyledInput>
+            <form action="" onSubmit= {onSubmit}>
+                <StyledInput autoComplete="username" name = "username" placeholder="아이디" onChange = {onChange} value= {form.username}></StyledInput>
 
-                <StyledInput autoComplete="new-password" name = "password" placeholder="비밀번호" type="password"></StyledInput>
+                <StyledInput autoComplete="new-password" name = "password" placeholder="비밀번호" type="password" onChange = {onChange} value= {form.password}></StyledInput>
 
                 {type === 'register' && (
-                    <StyledInput autoComplete="new-password" name = "passwordConfirm" placeholder="비밀번호 확인" type="password"></StyledInput>
+                    <StyledInput autoComplete="new-password" name = "passwordConfirm" placeholder="비밀번호 확인" type="password" onChange = {onChange} value= {form.passwordConfirm}></StyledInput>
                 )
                 }
-            <Button cyan fullWidth>로그인</Button>
+                <Button cyan fullWidth>{text}</Button>  
             </form> 
             <Footer>
                 {type === 'login' ? (
