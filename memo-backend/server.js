@@ -19,15 +19,28 @@ const HOST = 'localhost:27017'
 const DB = 'memo'
 const mongodbURL = `mongodb://${USER}:${PWD}@${HOST}/${DB}`   
 const main = async()=>{ 
-    app.use('/', express.static(path_dist))   
-    app.use('/api', api.routes()); 
-    app.use(bodyParser.urlencoded({ extended: false })) 
-    app.use(bodyParser.json())  
-    app.use(cors())  
+    //DB connection
     mongoose.connect(mongodbURL, {useNewUrlParser: true, useUnifiedTopology: true}) 
     .then(() =>  console.log('connection succesful'))
     .catch((err) => console.error(err))   
     mongoose.set('useFindAndModify', false);
+
+    //bodyParser setting
+    app.use(bodyParser.urlencoded({ extended: false })) 
+    app.use(bodyParser.json())  
+
+    // cors setting in development version
+    app.use(cors())  
+
+    // static path and api setting 
+    app.use('/', express.static(path_dist))    
+    app.use('/api', api.routes()); 
+    
+    // error handler
+    app.use((error, req, res, next) =>{   // --- (4)
+        res.status(503).json({ message: error.message });
+    });  
+    
     http.listen(PORT, ()=> console.log(`솔방이 메모 앱이 시작됩니다. http://127.0.0.1:${PORT} :: ${util._date()}`));
 }
 main();  
