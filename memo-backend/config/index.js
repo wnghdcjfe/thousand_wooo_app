@@ -1,3 +1,3 @@
 module.exports = {
-    secret: 'lifeisnothingwithoutlove'
+    secret: 'amumu_is_super_op'
 };

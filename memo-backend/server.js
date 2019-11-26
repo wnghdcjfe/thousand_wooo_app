@@ -32,7 +32,7 @@ const main = async()=>{
 
     // static path and api setting 
     app.use('/', express.static(path_dist))    
-    app.use('/api', api); 
+    app.use('/api', api);  
     
     // error handler
     app.use((error, req, res, next) =>{    
