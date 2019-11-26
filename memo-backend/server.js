@@ -2,14 +2,12 @@ const express = require('express')
 const app     = express()
 const cors    = require('cors')
 const http    = require("http").createServer(app) 
-const util    = require('./util')() 
+const util    = require('./util')
 const path    = require('path')   
 const mongoose = require('mongoose') 
 const bodyParser = require('body-parser')
 
-const api = require('./api')
-const jwtMiddleware = require('./lib/jwtMiddleware') 
- 
+const api = require('./api') 
 
 const path_dist   = path.join(__dirname, '..', './dist')   
 const PORT    = process.env.PORT || 12010 
@@ -34,11 +32,11 @@ const main = async()=>{
 
     // static path and api setting 
     app.use('/', express.static(path_dist))    
-    app.use('/api', api.routes()); 
+    app.use('/api', api); 
     
     // error handler
-    app.use((error, req, res, next) =>{   // --- (4)
-        res.status(503).json({ message: error.message });
+    app.use((error, req, res, next) =>{    
+        res.status(503).send({ success : false, message: error.message, error : true });
     });  
     
     http.listen(PORT, ()=> console.log(`솔방이 메모 앱이 시작됩니다. http://127.0.0.1:${PORT} :: ${util._date()}`));
