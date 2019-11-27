@@ -12,7 +12,7 @@ module.exports = function checkLogin(req, res, next) {
       if (err) {
         throw new Error('토큰이 만료되었습니다.');  
       } else {
-        console.log("decoded", decoded)
+        console.log("decoded", decoded) 
         req.decoded = decoded;
         next();
       }

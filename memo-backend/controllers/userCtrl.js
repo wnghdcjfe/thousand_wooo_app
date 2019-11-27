@@ -1,6 +1,6 @@
 const User = require('../models/User.js'); 
 const _ = require("fxjs/Strict");  
-const config = require('../config') 
+const {secret, tokenDuration} = require('../config') 
 const {wrapE} = require('../util'); 
 const jwt = require('jsonwebtoken'); 
 const bcrypt = require('bcryptjs');  
@@ -16,7 +16,7 @@ exports.login = wrapE(async(req, res, next) => {
     const isOwn = bcrypt.compareSync(password, hashedPW); 
 
     if(isOwn){
-        let token = jwt.sign({"user": username}, config.secret, { expiresIn: '0.5h'});
+        let token = jwt.sign({"user": username}, secret, { expiresIn: tokenDuration});
         res.status(200).send({
           success: true,
           message: '성공적으로 토큰이 발급되며 로그인이 되었습니다.',
@@ -42,7 +42,7 @@ exports.register =  wrapE(async(req, res, next) => {
     const new_user = new User({username, "password" : hashedPW}) 
     await new_user.save();
 
-    let token = jwt.sign({"user": username}, config.secret, { expiresIn: '0.5h'});
+    let token = jwt.sign({"user": username}, secret, { expiresIn: tokenDuration});
     res.status(200).send({
         success: true,
         message: '성공적으로 토큰이 발급되며 회원가입성공 및 로그인이 되었습니다.',
