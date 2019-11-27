@@ -17,6 +17,7 @@ exports.login = wrapE(async(req, res, next) => {
 
     if(isOwn){
         let token = jwt.sign({"user": username}, secret, { expiresIn: tokenDuration});
+        res.cookie('jwtToken', token, { maxAge: 1000 * 60 * 60 * 24, httpOnly: true });
         res.status(200).send({
           success: true,
           message: '성공적으로 토큰이 발급되며 로그인이 되었습니다.',
@@ -43,6 +44,7 @@ exports.register =  wrapE(async(req, res, next) => {
     await new_user.save();
 
     let token = jwt.sign({"user": username}, secret, { expiresIn: tokenDuration});
+    res.cookie('jwtToken', token, { maxAge: 1000 * 60 * 60 * 24, httpOnly: true });
     res.status(200).send({
         success: true,
         message: '성공적으로 토큰이 발급되며 회원가입성공 및 로그인이 되었습니다.',

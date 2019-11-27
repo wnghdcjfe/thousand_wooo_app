@@ -52,5 +52,58 @@
   <img src="https://raw.githubusercontent.com/wnghdcjfe/thousand_wooo_app/master/memo-frontend/src/image/9.gif" width="700">
 </p> 
 
+<p align="center"> 
+  <img src="https://raw.githubusercontent.com/wnghdcjfe/thousand_wooo_app/master/memo-frontend/src/image/10.gif" width="700">
+</p> 
+
+<p align="center"> 
+  <img src="https://raw.githubusercontent.com/wnghdcjfe/thousand_wooo_app/master/memo-frontend/src/image/11.gif" width="700">
+</p> 
+
+<p align="center"> 
+  <img src="https://raw.githubusercontent.com/wnghdcjfe/thousand_wooo_app/master/memo-frontend/src/image/12.gif" width="700">
+</p> 
+
+<p align="center"> 
+  <img src="https://raw.githubusercontent.com/wnghdcjfe/thousand_wooo_app/master/memo-frontend/src/image/13.gif" width="700">
+</p> 
+
+<p align="center"> 
+  <img src="https://raw.githubusercontent.com/wnghdcjfe/thousand_wooo_app/master/memo-frontend/src/image/14.gif" width="700">
+</p> 
+
+<p align="center"> 
+  <img src="https://raw.githubusercontent.com/wnghdcjfe/thousand_wooo_app/master/memo-frontend/src/image/15.gif" width="700">
+</p> 
+
+<p align="center"> 
+  <img src="https://raw.githubusercontent.com/wnghdcjfe/thousand_wooo_app/master/memo-frontend/src/image/16.gif" width="700">
+</p> 
+
+<p align="center"> 
+  <img src="https://raw.githubusercontent.com/wnghdcjfe/thousand_wooo_app/master/memo-frontend/src/image/17.gif" width="700">
+</p> 
+
+<p align="center"> 
+  <img src="https://raw.githubusercontent.com/wnghdcjfe/thousand_wooo_app/master/memo-frontend/src/image/18.jpg" width="700">
+</p> 
+
+<p align="center"> 
+  <img src="https://raw.githubusercontent.com/wnghdcjfe/thousand_wooo_app/master/memo-frontend/src/image/19.jpg" width="700">
+</p> 
+
+<p align="center"> 
+  <img src="https://raw.githubusercontent.com/wnghdcjfe/thousand_wooo_app/master/memo-frontend/src/image/20.jpg" width="700">
+</p> 
+
+<p align="center"> 
+  <img src="https://raw.githubusercontent.com/wnghdcjfe/thousand_wooo_app/master/memo-frontend/src/image/21.gif" width="700">
+</p> 
  
+<p align="center"> 
+  <img src="https://raw.githubusercontent.com/wnghdcjfe/thousand_wooo_app/master/memo-frontend/src/image/22.jpg" width="700">
+</p> 
+<p align="center"> 
+  <img src="https://raw.githubusercontent.com/wnghdcjfe/thousand_wooo_app/master/memo-frontend/src/image/23.jpg" width="700">
+</p> 
 
