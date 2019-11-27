@@ -34,12 +34,12 @@ const RegisterForm = () => {
   };  
 
   useEffect(() => {  
-    dispatch(initializeForm('register'));
+    dispatch(initializeForm('register')); 
     if(authError || auth){
       authError ? console.error('회원가입실패') : console.log('회원가입 성공')
       console.log(authError || auth)
     }
-  }, []); 
+  }, [auth, authError]); 
   return (
     <AuthForm
       type="register"
