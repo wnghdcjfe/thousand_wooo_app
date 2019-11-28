@@ -1,15 +1,4 @@
-{
-    title:String, 
-    username:String, 
-    content: String,
-    update_date:Date, 
-    create_date:Date,
-    comments:[
-        {
-            content:String, 
-            name : String,
-            update_date:Date, 
-            create_date:Date
-        }
-    ]
-}
+const a = '\"username\" length must be at least 2 characters long'
+const b = a.replace(/"|\\/g, '')
+console.log(a)
+console.log(b)

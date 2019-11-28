@@ -4,8 +4,18 @@ const {secret, tokenDuration} = require('../config')
 const {wrapE} = require('../util'); 
 const jwt = require('jsonwebtoken'); 
 const bcrypt = require('bcryptjs');  
+const Joi = require('@hapi/joi'); 
+const schema = Joi.object({
+    username: Joi.string()
+        .alphanum()
+        .min(2)
+        .max(30)
+        .required(),
+    password: Joi.string() 
+})   
 exports.login = wrapE(async(req, res, next) => { 
     const {username, password} = req.body;  
+    await schema.validateAsync({username, password}) 
     //스키마에 맞는지를 확인하는 검증 로직 필요 
     const isUser = await User.findOne({"username" : username}).lean(); 
     if(!isUser){
@@ -21,7 +31,8 @@ exports.login = wrapE(async(req, res, next) => {
         res.status(200).send({
           success: true,
           message: '성공적으로 토큰이 발급되며 로그인이 되었습니다.',
-          token: token
+          token: token, 
+          username : username
         });
         return;
     }else{
@@ -30,10 +41,8 @@ exports.login = wrapE(async(req, res, next) => {
 })
 exports.register =  wrapE(async(req, res, next) => { 
     const {username, password} = req.body; 
-    
-    //스키마에 맞는지를 확인하는 검증 로직 필요
-
-    console.log(username, password)
+    await schema.validateAsync({username, password})  
+    //스키마에 맞는지를 확인하는 검증 로직 필요 
     const isUser = await User.findOne({"username" : username}).lean();
     if(isUser){
         throw new Error(`${username}은 이미 존재하는 사용자입니다.`); 
@@ -48,7 +57,8 @@ exports.register =  wrapE(async(req, res, next) => {
     res.status(200).send({
         success: true,
         message: '성공적으로 토큰이 발급되며 회원가입성공 및 로그인이 되었습니다.',
-        token: token
+        token: token, 
+        username : username
     });
     return; 
 })
