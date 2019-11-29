@@ -13,7 +13,10 @@ const schema = Joi.object({
 })   
  
 exports.check = wrapE(async(req, res, next) => { 
-    console.log("req.username : ", req.username) 
+    if(!req.username){
+        throw new Error("로그인이 유효하지 않습니다.");
+        return; 
+    } 
     res.status(200).send({
         success: true,
         message: '로그인됨을 확인할 수 있습니다.', 
@@ -70,9 +73,5 @@ exports.login = wrapE(async(req, res, next) => {
 
 exports.logout = wrapE(async(req, res, next) => { 
     res.clearCookie('token'); 
-    res.status(204).send({
-        success: true,
-        message: '로그아웃이 성공적으로 완료되었습니다.', 
-        username : username
-      });  
+    res.status(204)
 }) 
