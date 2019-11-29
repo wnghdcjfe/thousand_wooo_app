@@ -53,6 +53,11 @@ const LoginForm = ({ history }) => {
   useEffect(() => {
     if(user){
       history.push('/');
+      try{
+        localStorage.setItem('user', JSON.stringify(user));
+      }catch(e){
+        console.log('로컬스토리지 애러')
+      }
     }
   }, [history, user])
  

@@ -67,3 +67,12 @@ exports.login = wrapE(async(req, res, next) => {
         throw new Error(`잘못된 비밀번호를 입력하셨습니다.`); 
     }
 }) 
+
+exports.logout = wrapE(async(req, res, next) => { 
+    res.clearCookie('token'); 
+    res.status(204).send({
+        success: true,
+        message: '로그아웃이 성공적으로 완료되었습니다.', 
+        username : username
+      });  
+}) 
