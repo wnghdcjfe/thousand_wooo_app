@@ -6,6 +6,7 @@ import {check} from '../../modules/user';
 import {withRouter} from 'react-router-dom';
 
 const RegisterForm = ({history}) => { 
+  const [error, setError] = useState(null);
   const dispatch = useDispatch();
   const { form, auth, authError, user } = useSelector(({ auth, user }) => ({
     form: auth.register, 
@@ -29,8 +30,14 @@ const RegisterForm = ({history}) => {
   const onSubmit = e => { 
     e.preventDefault();
     const {username, password, passwordConfirm} = form; 
-    if(password !== passwordConfirm){
-      alert("비밀번호확인과 비밀번호가 서로 다릅니다.")
+    if([username, password, passwordConfirm].includes('')){ 
+      setError('빈칸을 모두 입력하세요. ');
+      return;
+    }
+    if(password !== passwordConfirm){ 
+      setError("비밀번호확인과 비밀번호가 서로 다릅니다.")
+      changeField({form : 'register', key : 'password', value : ''})
+      changeField({form : 'register', key : 'passwordConfirm', value : ''})
       return; 
     }
     dispatch(register({username, password}))
@@ -41,9 +48,8 @@ const RegisterForm = ({history}) => {
   }, [dispatch]); 
   
   useEffect(() => {  
-    if(authError){
-      console.log('오류 발생')
-      console.log(authError)
+    if(authError){   
+      setError(authError.response.data.message); return;
     }
     if(auth){
       console.log('회원가입 성공')
@@ -55,9 +61,9 @@ const RegisterForm = ({history}) => {
   
   useEffect(() => {  
     if(user){
-      console.log('check 성공', user) 
+      history.push('/'); 
     } 
-  }, [user]);  
+  }, [history, user]);  
 
   return (
     <AuthForm
@@ -65,6 +71,7 @@ const RegisterForm = ({history}) => {
       form={form}
       onChange={onChange}
       onSubmit={onSubmit} 
+      error = {error}
     />
   );
 };

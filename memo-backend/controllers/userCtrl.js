@@ -27,7 +27,7 @@ exports.register =  wrapE(async(req, res, next) => {
     //스키마에 맞는지를 확인하는 검증 로직 필요 
     let user = await User.findOne({"username" : username}).lean();
     if(user){
-        throw new Error(`${username}은 이미 존재하는 사용자입니다.`); 
+        throw new Error(`${username}님은 이미 존재하는 사용자입니다.`); 
     }  
     const salt = bcrypt.genSaltSync(10);
     const hashedPW = bcrypt.hashSync(password, salt); 

@@ -35,8 +35,8 @@ const main = async()=>{
     
     // error handler
     app.use((error, req, res, next) =>{    
-        console.log(`error가 발생했습니다..! ${error}`)
-        res.status(400).send({ success : false, message: error.message.replace(/"|\\/g, ''), error : true });
+        console.log(`${util._date()} :: Error ${error}`)
+        res.status(400).send({ success : false, message: String(error.message.replace(/"|\\/g, '')), error : true });
     });  
     
     http.listen(PORT, ()=> console.log(`솔방이 메모 앱이 시작됩니다. http://127.0.0.1:${PORT} :: ${util._date()}`));
