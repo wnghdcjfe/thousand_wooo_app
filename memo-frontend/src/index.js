@@ -21,7 +21,7 @@ const loadUser = () => {
         store.dispatch(tempSetUser(user));
         store.dispatch(check());
     }catch(e){ 
-        console.log('로컬 스토리지 문제')
+        console.log('로컬 스토리지 애러')
     }
 }
 

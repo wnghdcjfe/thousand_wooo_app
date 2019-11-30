@@ -39,21 +39,16 @@ const LoginForm = ({ history }) => {
   }, [dispatch]); 
 
 
-  useEffect(() => {  
-    console.log(authError, auth)
-    if(authError){  
-      console.log(authError)
+  useEffect(() => {   
+    if(authError){   
       setError(authError.response.data.message); 
       return;
     }
-    if(auth){
-      console.log('로그인 성공!')
-      console.log(auth) 
+    if(auth){ 
       dispatch(check())
     } 
   }, [auth, authError, dispatch]); 
-  useEffect(() => {
-    console.log(user)
+  useEffect(() => { 
     if(user){
       history.push('/');
       try{

@@ -14,13 +14,12 @@ const schema = Joi.object({
  
 exports.check = wrapE(async(req, res, next) => { 
     if(!req.username){
-        throw new Error("로그인이 유효하지 않습니다.");
-        return; 
-    } 
+        return res.status(401).send(); 
+    }  
     res.status(200).send({
         success: true,
-        message: '로그인됨을 확인할 수 있습니다.', 
-        user : req.username
+        message: '성공적으로 로그인이 확인되었습니다.',
+        username : req.username
     });
 })
 
@@ -40,7 +39,7 @@ exports.register =  wrapE(async(req, res, next) => {
     user = await User.findOne({"username" : username}).lean(); 
 
     await generateToken(res, user._id, username); 
-    res.cookie('test', 'abc').status(200).send({
+    res.status(200).send({
         success: true,
         message: '성공적으로 토큰이 발급되며 회원가입성공 및 로그인이 되었습니다.',
         username : username
