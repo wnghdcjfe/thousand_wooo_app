@@ -73,5 +73,8 @@ exports.login = wrapE(async(req, res, next) => {
 
 exports.logout = wrapE(async(req, res, next) => { 
     res.clearCookie('token'); 
-    res.status(204)
+    res.status(204).send({
+        success: true,
+        message: '성공적으로 로그아웃이 되었습니다.'
+    });
 }) 

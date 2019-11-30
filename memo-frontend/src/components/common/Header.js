@@ -42,8 +42,7 @@ const UserInfo = styled.div`
   margin-right: 1rem;
 `;
 
-const Header = ({ user, onLogout }) => {
-  console.log(user)
+const Header = ({ user, onLogout }) => { 
   return (
     <>
       <HeaderWrapper>

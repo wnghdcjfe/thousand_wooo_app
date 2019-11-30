@@ -40,7 +40,9 @@ const LoginForm = ({ history }) => {
 
 
   useEffect(() => {  
+    console.log(authError, auth)
     if(authError){  
+      console.log(authError)
       setError(authError.response.data.message); 
       return;
     }
@@ -51,6 +53,7 @@ const LoginForm = ({ history }) => {
     } 
   }, [auth, authError, dispatch]); 
   useEffect(() => {
+    console.log(user)
     if(user){
       history.push('/');
       try{

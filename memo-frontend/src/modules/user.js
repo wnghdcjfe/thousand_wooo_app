@@ -24,8 +24,10 @@ function checkFailureSaga() {
 } 
 function* logoutSaga() {
   try {
+    console.log(1)
     yield call(authAPI.logout)
     localStorage.removeItem('user')
+    console.log(localStorage.getItem('user'))
   } catch (error) {
     console.log(error)
   } 
