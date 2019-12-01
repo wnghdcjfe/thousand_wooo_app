@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Responsive from './Responsive';
 import Button from './Button';
 
-const HeaderWrapper = styled.div`
+const HeaderBlock = styled.div`
   position: fixed;
   width: 100%;
   background: white;
@@ -45,14 +45,13 @@ const UserInfo = styled.div`
 const Header = ({ user, onLogout }) => { 
   return (
     <>
-      <HeaderWrapper>
+      <HeaderBlock>
         <Wrapper>
-          <Link to="/" className="logo">
-            솔방이메모장
-          </Link>
+          <Link to="/" className="logo">솔방이의 메모장 </Link> 
+          <Link to="/love" className="logo"> 우희♥</Link> 
           {user ? (
-            <div className="right">   
-              <UserInfo>{user.user}</UserInfo>
+            <div className="right">
+              <UserInfo>{user.username}</UserInfo>
               <Button onClick={onLogout}>로그아웃</Button>
             </div>
           ) : (
@@ -61,7 +60,7 @@ const Header = ({ user, onLogout }) => {
             </div>
           )}
         </Wrapper>
-      </HeaderWrapper>
+      </HeaderBlock>
       <Spacer />
     </>
   );

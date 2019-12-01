@@ -16,7 +16,11 @@ exports.checkToken = (req, res, next) =>{
       if (err) {  
         return next();
       } else { 
-        req.username = decoded.username 
+        console.log(decoded)
+        req.user = {
+          _id : decoded.id,
+          username : decoded.username
+        } 
         return next();
       }
     });

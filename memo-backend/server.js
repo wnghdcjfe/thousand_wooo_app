@@ -11,7 +11,7 @@ const {checkToken} = require('./lib/jwt')
 const api = require('./api') 
 
 const path_dist   = path.join(__dirname, '..', './dist')   
-const PORT    = process.env.PORT || 12010 
+const PORT    = process.env.PORT || 4000 
 const USER = 'dabin'
 const PWD = 'dabin12010'
 const HOST = 'localhost:27017'

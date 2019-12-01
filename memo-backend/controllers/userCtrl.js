@@ -13,14 +13,10 @@ const schema = Joi.object({
 })   
  
 exports.check = wrapE(async(req, res, next) => { 
-    if(!req.username){
+    if(!req.user){
         return res.status(401).send(); 
-    }  
-    res.status(200).send({
-        success: true,
-        message: '성공적으로 로그인이 확인되었습니다.',
-        username : req.username
-    });
+    }    
+    res.status(200).send(req.user);
 })
 
 exports.register =  wrapE(async(req, res, next) => { 
@@ -37,13 +33,9 @@ exports.register =  wrapE(async(req, res, next) => {
     await new_user.save();
     
     user = await User.findOne({"username" : username}).lean(); 
-
-    await generateToken(res, user._id, username); 
-    res.status(200).send({
-        success: true,
-        message: '성공적으로 토큰이 발급되며 회원가입성공 및 로그인이 되었습니다.',
-        username : username
-    });
+    console.log("generateToken and user : ", user)
+    await generateToken(res, user._id, user.username); 
+    res.status(200).send({_id : user._id, username : user.username})
     return; 
 })
 exports.login = wrapE(async(req, res, next) => { 
@@ -58,12 +50,8 @@ exports.login = wrapE(async(req, res, next) => {
     const isOwn = bcrypt.compareSync(password, hashedPW); 
 
     if(isOwn){
-        await generateToken(res, user._id, username)
-        res.status(200).send({
-          success: true,
-          message: '성공적으로 토큰이 발급되며 로그인이 되었습니다.', 
-          username : username
-        });
+        await generateToken(res, user._id, user.username)
+        res.status(200).send({_id : user._id, username : user.username}) 
         return;
     }else{
         throw new Error(`잘못된 비밀번호를 입력하셨습니다.`); 
@@ -72,8 +60,5 @@ exports.login = wrapE(async(req, res, next) => {
 
 exports.logout = wrapE(async(req, res, next) => { 
     res.clearCookie('token'); 
-    res.status(204).send({
-        success: true,
-        message: '성공적으로 로그아웃이 되었습니다.'
-    });
+    res.status(204).send();
 }) 

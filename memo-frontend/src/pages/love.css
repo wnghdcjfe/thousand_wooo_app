@@ -1,0 +1,7 @@
+.imgWrapper{
+    max-width: 700px;
+    margin: 0 auto; 
+}
+.imgWrapper > img{
+    width: 100%; 
+}

@@ -2,12 +2,13 @@ const express = require('express')
 const router = express.Router()
 const {checkToken} = require('../lib/jwt');
 const postCtrl = require('../controllers/postCtrl');  
+//write
+router.post('/', checkToken, postCtrl.write);   
 
-router.get('/', postCtrl.showList);
+router.use('/:id', postCtrl.getPostById);
+router.get('/', postCtrl.showList);   
 router.get('/:id', postCtrl.read);
-
-router.post('/', checkToken, postCtrl.write);  
-router.delete('/:id', checkToken, postCtrl.isOwn, postCtrl.write);
+router.delete('/:id', checkToken, postCtrl.isOwn, postCtrl.remove);
 router.patch('/:id', checkToken, postCtrl.isOwn, postCtrl.update);
 
 module.exports = router;
