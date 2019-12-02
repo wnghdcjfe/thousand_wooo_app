@@ -78,8 +78,8 @@ const removeHtmlAndShorten = body => {
     return filtered.length < 200 ? filtered : `${filtered.slice(0, 200)}...`;
   };
 
-exports.showList = wrapE(async(req, res, next) => { 
-  const page = ~~req.query.page;
+exports.showList = wrapE(async(req, res, next) => {  
+  const page = (~~req.query.page || 1)
   if (page < 1) {
     return res.status(400).send({ message: "페이지가 음수인 경우는 없습니다.", error : true });   
   }

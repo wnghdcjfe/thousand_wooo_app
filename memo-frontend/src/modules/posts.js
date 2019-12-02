@@ -26,14 +26,16 @@ const initialState = {
   error: null,
   lastPage: 1,
 };
-
+ 
 const posts = handleActions(
   {
-    [LIST_POSTS_SUCCESS]: (state, { payload: posts, meta: response }) => ({
+    [LIST_POSTS_SUCCESS]: (state, { payload: posts, meta: response }) => {
+      console.log("last-page : ", response.headers['last-page'])
+      return ({
       ...state,
       posts,
       lastPage: ~~response.headers['last-page'], // 문자열을 숫자로 변환
-    }),
+    })},
     [LIST_POSTS_FAILURE]: (state, { payload: error }) => ({
       ...state,
       error,
