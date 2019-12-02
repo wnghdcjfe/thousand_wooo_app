@@ -9,7 +9,7 @@ const SubInfoBlock = styled.div`
     css`
       margin-top: 1rem;
     `}
-  color: ${palette.gray[6]};
+  color: ${palette.gray[6]}; 
 
   /* span 사이에 가운뎃점 문자 보여주기*/
   span + span:before {

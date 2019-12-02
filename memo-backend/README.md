@@ -20,3 +20,10 @@ db.createUser({
  ]
 })
 ```
+
+## 사용된 HTTP Status Code
+ - 400 Bad Request(잘못된 요청)
+ - 401 허가되지 않음
+ - 403 forbidden(서버가 요청을 거부)
+ - 404 요청한 페이지를 찾을 수 음슴
+ - 409 Conflict : 사용자가 다시 요청을 보내야 할 때, 아이디 중복입력

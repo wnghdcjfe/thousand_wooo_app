@@ -37,22 +37,23 @@ const sanitizeOption = {
 
   exports.getPostById = wrapE(async(req, res, next) => {
     const id = req.params.id
-    if (!ObjectId.isValid(id)) {
-        throw new Error("id가 이상합니다.");  
+    if (!ObjectId.isValid(id)) { 
+        return res.status(400).send({ message: "요청된 Id의 형식이 이상합니다.", error : true });    
     }
     const post = await Post.findById(id);
     if(!post){
-        throw new Error("해당 포스트가 존재하지 않습니다.");   
+        return res.status(404).send({ message: "요청한 페이지를 찾을 수 없습니다.", error : true });  
     }
     req.post = post; 
     return next();  
 })
 
-exports.isOwn = wrapE(async(req, res, next) => {
+exports.isOwn = wrapE(async(req, res, next) => { 
     const user = req.user; 
-    const post = req.post;  
+    const post = req.post;   
+  
     if (post.user._id.toString() !== user._id) {
-        throw new Error("내것이 아닙니다.");   
+      return res.status(403).send({ message: "수정하려는 포스트의 유저와 요청된 유저의 ID가 다릅니다. ", error : true });  
     }
     return next(); 
 })
@@ -77,13 +78,10 @@ const removeHtmlAndShorten = body => {
     return filtered.length < 200 ? filtered : `${filtered.slice(0, 200)}...`;
   };
 
-exports.showList = wrapE(async(req, res, next) => {
-    // query 는 문자열이기 때문에 숫자로 변환해주어야합니다.
-  // 값이 주어지지 않았다면 1 을 기본으로 사용합니다.
-  const page = parseInt(req.query.page || '1', 10);
-
+exports.showList = wrapE(async(req, res, next) => { 
+  const page = ~~req.query.page;
   if (page < 1) {
-    throw new Error("이것은 잘못된 운명");     
+    return res.status(400).send({ message: "페이지가 음수인 경우는 없습니다.", error : true });   
   }
 
   const { tag, username } = req.query;

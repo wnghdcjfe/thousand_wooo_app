@@ -14,6 +14,7 @@ const TitleInput = styled.input`
   font-size: 3rem;
   outline: none;
   padding-bottom: 0.5rem;
+  background: #f2f4f7;
   border: none;
   border-bottom: 1px solid ${palette.gray[4]};
   margin-bottom: 2rem;

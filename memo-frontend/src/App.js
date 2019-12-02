@@ -5,7 +5,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import WritePage from './pages/WritePage';
 import PostPage from './pages/PostPage';
-import lovePage from './pages/lovePage';
+import lovePage from './pages/LovePage';
 import { Helmet } from 'react-helmet-async';
 
 const App = () => {

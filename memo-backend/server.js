@@ -19,7 +19,7 @@ const DB = 'memo'
 const mongodbURL = `mongodb://${USER}:${PWD}@${HOST}/${DB}`   
 const main = async()=>{ 
     //DB connection
-    mongoose.connect(mongodbURL, {useNewUrlParser: true, useUnifiedTopology: true}) 
+    await mongoose.connect(mongodbURL, {useNewUrlParser: true, useUnifiedTopology: true}) 
     .then(() =>  console.log(`DB connection succesful :: ${util._date()}`))
     .catch((err) => console.error(`DB connection error :: ${util._date()}`))   
     mongoose.set('useFindAndModify', false); 
@@ -36,7 +36,7 @@ const main = async()=>{
     // error handler
     app.use((error, req, res, next) =>{    
         console.log(`${util._date()} :: Error ${error}`)
-        res.status(400).send({ success : false, message: error.message.replace(/"|\\/g, ''), error : true });
+        return res.status(500).send({ success : false, message: error.message.replace(/"|\\/g, ''), error : true });
     });  
     
     http.listen(PORT, ()=> console.log(`솔방이 메모 앱이 시작됩니다. http://127.0.0.1:${PORT} :: ${util._date()}`));

@@ -11,12 +11,10 @@ exports.generateToken = (res, id, username) =>{
 exports.checkToken = (req, res, next) =>{  
   let token = req.cookies['token'];  
   if (token) {    
-    jwt.verify(token, secret, (err, decoded) => { 
-      //토큰에 대해 검증이 실패 한다면 그 사용자에 대한 토큰이 아니라는 것.  이 때 그냥 넘긴다. 
+    jwt.verify(token, secret, (err, decoded) => {  
       if (err) {  
         return next();
-      } else { 
-        console.log(decoded)
+      } else {  
         req.user = {
           _id : decoded.id,
           username : decoded.username

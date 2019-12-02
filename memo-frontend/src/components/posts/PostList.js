@@ -18,16 +18,13 @@ const WritePostButtonWrapper = styled.div`
 `;
 
 const PostItemBlock = styled.div`
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-  /* 맨 위 포스트는 padding-top 없음 */
-  &:first-child {
-    padding-top: 0;
-  }
+  border: 1px solid #dee3eb; 
+  background: #fff; 
+  padding: 2rem; 
+  margin-bottom:1rem; 
   & + & {
     border-top: 1px solid ${palette.gray[2]};
   }
-
   h2 {
     font-size: 2rem;
     margin-bottom: 0;
@@ -37,24 +34,20 @@ const PostItemBlock = styled.div`
     }
   }
   p {
-    margin-top: 2rem;
+    margin-top: 0.5rem; 
   }
 `;
 
 const PostItem = ({ post }) => {
-  const { publishedDate, user, tags, title, body, _id } = post;
-  console.log(post)
+  const { publishedDate, user, tags, title, body, _id } = post; 
   return (
     <PostItemBlock>
       <h2> 
         <Link to={`/@${user.username}/${_id}`}>{title}</Link>
-      </h2>
-      <SubInfo
-        username={user.username}
-        publishedDate={new Date(publishedDate)}
-      />
-      <Tags tags={tags} />
+      </h2> 
       <p>{body}</p>
+      <SubInfo username={user.username} publishedDate={new Date(publishedDate)} />
+      <Tags tags={tags} /> 
     </PostItemBlock>
   );
 };
