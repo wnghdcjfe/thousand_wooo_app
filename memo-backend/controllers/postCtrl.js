@@ -86,7 +86,7 @@ exports.showList = wrapE(async(req, res, next) => {
 
   const { tag, username } = req.query;
   // tag, username 값이 유효하면 객체 안에 넣고, 그렇지 않으면 넣지 않음
-  const query = {
+  const query = { 
     ...(username ? { 'user.username': username } : {}),
     ...(tag ? { tags: tag } : {}),
   }; 
@@ -94,9 +94,8 @@ exports.showList = wrapE(async(req, res, next) => {
       .sort({ _id: -1 })
       .limit(10)
       .skip((page - 1) * 10)
-      .lean() 
-      .exec()
-  const postCount = await Post.countDocuments(query).exec(); 
+      .lean()  
+  const postCount = await Post.countDocuments(query) 
   const ret = posts.map(post => ({...post, body : removeHtmlAndShorten(post.body)}))
   res.set('Last-Page', Math.ceil(postCount / 10));
   return res.status(200).send(ret); 
@@ -108,7 +107,7 @@ exports.read = wrapE(async(req, res, next) => {
 
 exports.remove = wrapE(async(req, res, next) => {
     const id = req.params.id; 
-    await Post.findByIdAndRemove(id).exec();
+    await Post.findByIdAndRemove(id);
     return res.status(204).send();  
 })  
 
@@ -123,8 +122,7 @@ exports.update = wrapE(async(req, res, next) => {
         nextData.body = sanitizeHtml(nextData.body);
     }
     const post = await Post.findByIdAndUpdate(id, nextData, {
-        new: true, // 이 값을 설정하면 업데이트된 데이터를 반환합니다.
-        // false 일 때에는 업데이트 되기 전의 데이터를 반환합니다.
-    }).exec(); 
+        new: true
+    })
     return res.status(200).send(post); 
 }) 
