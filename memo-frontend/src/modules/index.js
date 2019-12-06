@@ -5,15 +5,15 @@ import loading from './loading';
 import user, { userSaga } from './user';
 import write, { writeSaga } from './write';
 import post, { postSaga } from './post';
-import posts, { postsSaga } from './posts';
-
+import posts, { postsSaga } from './posts'; 
+ 
 const rootReducer = combineReducers({
   auth,
   loading,
   user,
   write,
   post,
-  posts,
+  posts
 });
 
 export function* rootSaga() {

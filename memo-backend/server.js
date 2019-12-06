@@ -6,7 +6,7 @@ const util    = require('./util')
 const path    = require('path')   
 const mongoose = require('mongoose')  
 const cookieParser = require('cookie-parser') 
-const {checkToken} = require('./lib/jwt') 
+const {checkToken} = require('./lib/jwt')  
 
 const api = require('./api') 
 
@@ -30,7 +30,7 @@ const main = async()=>{
     app.use(checkToken)
     // static path and api setting 
     app.use('/', express.static(path_dist))    
-    app.use('/api', api);  
+    app.use('/api', api);    
      
     
     // error handler

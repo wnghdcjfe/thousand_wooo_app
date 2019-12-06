@@ -5,11 +5,13 @@ import qs from 'qs';
 import Pagination from '../../components/posts/Pagination';
 
 const PaginationContainer = ({ location }) => {
-  const { lastPage, posts, loading } = useSelector(({ posts, loading }) => ({
-    lastPage: posts.lastPage,
-    posts: posts.posts,
-    loading: loading['posts/LIST_POSTS'],
-  }));
+  const { lastPage, posts, loading } = useSelector(({ posts, loading }) => { 
+    return ({
+      lastPage: posts.lastPage,
+      posts: posts.posts,
+      loading: loading['posts/LIST_POSTS'],
+  })
+});
 
   // 포스트 데이터가 없거나 로딩 중이면 아무것도 보여주지 않음
   if (!posts || loading) return null;

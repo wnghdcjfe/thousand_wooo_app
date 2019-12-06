@@ -61,7 +61,6 @@ exports.isOwn = wrapE(async(req, res, next) => {
 exports.write = wrapE(async(req, res, next) => { 
     const { title, body, tags } = req.body 
     await schema.validateAsync({title, body, tags})    
-    console.log(req.user)
     const post = new Post({
         title,
         body: sanitizeHtml(body, sanitizeOption),
@@ -84,18 +83,20 @@ exports.showList = wrapE(async(req, res, next) => {
     return res.status(400).send({ message: "페이지가 음수인 경우는 없습니다.", error : true });   
   }
 
-  const { tag, username } = req.query;
-  // tag, username 값이 유효하면 객체 안에 넣고, 그렇지 않으면 넣지 않음
-  const query = { 
-    ...(username ? { 'user.username': username } : {}),
-    ...(tag ? { tags: tag } : {}),
-  }; 
-  const posts = await Post.find(query)
-      .sort({ _id: -1 })
+  const { tag, username } = req.query;   
+  const posts = await Post.find({
+    'user.username' :{
+      $eq : req.user ? req.user.username : ''
+    }, 
+    ...(tag ? { 
+      tags: {
+        $eq : tag 
+    }} : {})
+  }).sort({ _id: -1 })
       .limit(10)
       .skip((page - 1) * 10)
       .lean()  
-  const postCount = await Post.countDocuments(query) 
+  const postCount = posts.length;
   const ret = posts.map(post => ({...post, body : removeHtmlAndShorten(post.body)}))
   res.set('Last-Page', Math.ceil(postCount / 10));
   return res.status(200).send(ret); 

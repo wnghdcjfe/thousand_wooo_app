@@ -48,7 +48,7 @@ const Header = ({ user, onLogout }) => {
       <HeaderBlock>
         <Wrapper>
           <Link to="/" className="logo">솔방이의 메모장 </Link> 
-          <Link to="/love" className="logo"> 우희♥</Link> 
+          <Link to="/love" className="logo"> 우희♥</Link>   
           {user ? (
             <div className="right">
               <UserInfo>{user.username}</UserInfo>

@@ -29,8 +29,8 @@ const initialState = {
  
 const posts = handleActions(
   {
-    [LIST_POSTS_SUCCESS]: (state, { payload: posts, meta: response }) => {
-      console.log("last-page : ", response.headers['last-page'])
+    [LIST_POSTS_SUCCESS]: (state, { payload: posts, meta: response }) => { 
+      console.log("post_success : ", posts)
       return ({
       ...state,
       posts,
