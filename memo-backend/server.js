@@ -10,7 +10,7 @@ const {checkToken} = require('./lib/jwt')
 
 const api = require('./api') 
 
-const path_dist   = path.join(__dirname, '..', './dist')   
+const path_dist   = path.join(__dirname, '..', './memo-frontend/build')   
 const PORT    = process.env.PORT || 4000 
 const USER = 'dabin'
 const PWD = 'dabin12010'

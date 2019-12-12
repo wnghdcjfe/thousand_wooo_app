@@ -29,8 +29,7 @@ const initialState = {
  
 const posts = handleActions(
   {
-    [LIST_POSTS_SUCCESS]: (state, { payload: posts, meta: response }) => { 
-      console.log("post_success : ", posts)
+    [LIST_POSTS_SUCCESS]: (state, { payload: posts, meta: response }) => {  
       return ({
       ...state,
       posts,
