@@ -20,7 +20,7 @@ const Wrapper = styled(Responsive)`
   align-items: center;
   justify-content: space-between; /* 자식 엘리먼트 사이에 여백을 최대로 설정 */
   .logo {
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-weight: 800;
     letter-spacing: 2px;
   }

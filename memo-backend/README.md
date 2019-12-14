@@ -11,6 +11,7 @@
 
 ## Create User
 ```js
+use memo
 db.createUser({  
  user:"dabin",
  pwd:"dabin12010",

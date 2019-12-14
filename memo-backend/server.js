@@ -7,11 +7,11 @@ const path    = require('path')
 const mongoose = require('mongoose')  
 const cookieParser = require('cookie-parser') 
 const {checkToken} = require('./lib/jwt')  
-
 const api = require('./api') 
 
 const path_dist   = path.join(__dirname, '..', './memo-frontend/build')   
-const PORT    = process.env.PORT || 4000 
+const path_dist2   = path.join(__dirname, '..', './memo-frontend/build/index.html')  
+const PORT    = process.env.PORT || 80 
 const USER = 'dabin'
 const PWD = 'dabin12010'
 const HOST = 'localhost:27017'
@@ -29,7 +29,7 @@ const main = async()=>{
     app.use(express.json())    
     app.use(checkToken)
     // static path and api setting 
-    app.use('/', express.static(path_dist))    
+    app.use(express.static(path_dist))    
     app.use('/api', api);    
      
     
@@ -38,7 +38,10 @@ const main = async()=>{
         console.log(`${util._date()} :: Error ${error}`)
         return res.status(500).send({ success : false, message: error.message.replace(/"|\\/g, ''), error : true });
     });  
-    
+     
+    app.get('*', (req, res) => { 
+        res.sendFile(path_dist2)
+    })
     http.listen(PORT, ()=> console.log(`솔방이 메모 앱이 시작됩니다. http://127.0.0.1:${PORT} :: ${util._date()}`));
 }
 main();  
