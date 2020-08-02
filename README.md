@@ -28,6 +28,6 @@
 
 ## 실행영상 
 <p align="center"> 
-  <img src="https://raw.githubusercontent.com/wnghdcjfe/thousand_wooo_app/master/example.gif" width="700">
+  <img src="https://raw.githubusercontent.com/wnghdcjfe/thousand_wooo_app/master/example.gif" width="300">
 </p> 
 
